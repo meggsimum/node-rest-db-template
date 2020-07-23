@@ -1,0 +1,40 @@
+{
+  "name": "node-rest-db-template",
+  "version": "0.0.1",
+  "description": "Template for Node.js REST API with database / ORM as storage",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index.js config/*.js controller/*.js model/*.js route/*.js swagger/*.js",
+    "start-dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "npm run lint && mocha test/test.spec.js --exit"
+  },
+  "keywords": [
+    "REST",
+    "API",
+    "Server",
+    "Database",
+    "ORM"
+  ],
+  "author": "C. Mayer (meggsimum)",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.3.0",
+    "sequelize": "^6.3.3",
+    "sqlite3": "^5.0.0",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "mocha": "^8.0.1",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
+  }
+}
