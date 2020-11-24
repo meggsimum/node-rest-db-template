@@ -4,11 +4,14 @@
  * @author C. Mayer (meggsimum)
  */
 const db = require('../config/db.config.js');
+const queryResolver = require('../query/resolver');
 const Places = db.places;
 
 // fetch all places
 exports.findAll = (req, res) => {
-  Places.findAll().then(places => {
+  // resolve query params (filter, limit, ...) as Sequelize opts
+  const seqOpts = queryResolver.getSequelizeOpts(req.query);
+  Places.findAll(seqOpts).then(places => {
     // send all Customers to Client
     res.json(places);
   }).catch(err => {

@@ -15,6 +15,32 @@ module.exports = function (app) {
    *  /api/places:
    *    get:
    *      summary: Retrieve all places
+   *      parameters:
+   *        - in: query
+   *          name: limit
+   *          schema:
+   *            type: integer
+   *            required: false
+   *          description: Maximum number of result objects
+   *        - in: query
+   *          name: filter
+   *          schema:
+   *            type: string
+   *            required: false
+   *          description: CQL-like filter (only 'equals' at the moment) in the form 'name=Mutterstadt'
+   *        - in: query
+   *          name: order_by
+   *          schema:
+   *            type: string
+   *            required: false
+   *          description: Field to use to order results by
+   *        - in: query
+   *          name: order_dir
+   *          schema:
+   *            type: string
+   *            required: false
+   *            default: ASC
+   *          description: Order direction, either 'ASC' or 'DESC'
    *      responses:
    *        "200":
    *          description: JSON with all places objects as array
