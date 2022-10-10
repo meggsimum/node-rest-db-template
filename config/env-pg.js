@@ -1,9 +1,9 @@
 const env = {
-  database: process.env.REST_DATABASE || 'myDB',
-  username: process.env.REST_USER || 'myUser',
-  password: process.env.REST_PASS || 'lorem',
-  host: process.env.REST_HOST || 'localhost',
-  port: process.env.REST_PORT || 5432,
+  database: process.env.REST_DB_NAME || 'myDB',
+  username: process.env.REST_DB_USER || 'myUser',
+  password: process.env.REST_DB_PASS || 'lorem',
+  host: process.env.REST_DB_HOST || 'localhost',
+  port: process.env.REST_DB_PORT || 5432,
   dialect: 'postgres',
   pool: {
     max: 5,
