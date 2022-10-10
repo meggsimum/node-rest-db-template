@@ -5,8 +5,7 @@
  */
 import db from '../config/db.config.js';
 import queryResolver from '../query/resolver.js';
-// import js from '../util/js.js';
-// import logger from '../util/logger.js';
+import logger from '../util/logger.js';
 
 const Places = db.places;
 
@@ -18,19 +17,17 @@ const findAll = (req, res) => {
     // send all Customers to Client
     res.json(places);
   }).catch(err => {
-    console.log(err);
+    logger.error(err);
     res.status(500).json({ msg: 'error', details: err });
   });
 };
 
 // find a place by ID
 const findByPk = (req, res) => {
-  console.log(req.params.id);
   Places.findByPk(req.params.id).then(place => {
-    // console.log(place);
     res.json(place);
   }).catch(err => {
-    console.log(err);
+    logger.error(err);
     res.status(500).json({ msg: 'error', details: err });
   });
 };
@@ -42,7 +39,7 @@ const create = (req, res) => {
     // send created place to client
     res.status(201).json(place);
   }).catch(err => {
-    console.log(err);
+    logger.error(err);
     res.status(500).json({ msg: 'error', details: err });
   });
 };
@@ -63,7 +60,7 @@ const update = (req, res) => {
     { where: { id: id } }).then(() => {
     res.status(200).json({ mgs: 'Updated Successfully -> Place ID = ' + id });
   }).catch(err => {
-    console.log(err);
+    logger.error(err);
     res.status(500).json({ msg: 'error', details: err });
   });
 };
@@ -76,7 +73,7 @@ const _delete = (req, res) => {
   }).then(() => {
     res.status(200).json({ msg: 'Deleted Successfully -> Place ID = ' + id });
   }).catch(err => {
-    console.log(err);
+    logger.error(err);
     res.status(500).json({ msg: 'error', details: err });
   });
 };

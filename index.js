@@ -9,9 +9,9 @@ import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsonDoc from 'swagger-jsdoc';
 import swaggerGlobalOpts from './swagger/global-opts.js';
-// import logger from './util/logger.js';
 import db from './config/db.config.js';
 import placesRoute from './route/place.route.js';
+import logger from './util/logger.js';
 
 const port = process.env.REST_PORT || 8888;
 const initDb = process.env.REST_INIT_DB || false;
@@ -23,9 +23,7 @@ placesRoute(app);
 
 // DB / ORM
 db.sequelize.sync({ force: initDb }).then(() => {
-  console.log('-----------------------------------------------');
-  console.log(`Drop and resync with { force: ${initDb} }`);
-  console.log('-----------------------------------------------');
+  logger.framed(`Drop and resync with { force: ${initDb} }`);
 
   if (initDb) {
     // Init data for 'places' table in database
@@ -53,19 +51,8 @@ const verbose = true;
 
 // start server and export the instance (for unit tests mainly)
 app.listen(port, () =>
-  console.log(`REST server listening on port ${port}!`)
+  logger.info(`REST server listening on port ${port}!`)
 );
 
 // export the instance (for unit tests mainly)
 export default app;
-
-/**
- * Logs the given message, when `verbose` flag is set to true.
- *
- * @param {*} msg
- */
-function verboseLogging (msg) {
-  if (verbose) {
-    console.log.apply(console, arguments);
-  }
-}
