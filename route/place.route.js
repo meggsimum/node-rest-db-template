@@ -1,17 +1,18 @@
+import places from '../controller/place.controller.js';
+
 /**
  * REST routes for places
  *
  * @author C. Mayer (meggsimum)
  */
-module.exports = function (app) {
-  const places = require('../controller/place.controller.js');
+const placesRoutes = function (app) {
+  // const places = require('../controller/place.controller.js');
   const basePath = '/api/places';
 
   /**
    * Retrieves all places
    *
    * @swagger
-   * path:
    *  /api/places:
    *    get:
    *      summary: Retrieve all places
@@ -57,7 +58,6 @@ module.exports = function (app) {
    * Retrieves a single place by ID
    *
    * @swagger
-   * path:
    *  /api/places/:id:
    *    get:
    *      summary: Retrieve a place by ID
@@ -81,7 +81,6 @@ module.exports = function (app) {
    * Creates a new place
    *
    * @swagger
-   * path:
    *  /api/places:
    *    post:
    *      summary: Create a new place
@@ -104,7 +103,6 @@ module.exports = function (app) {
    * Updates a place (ID in body)
    *
    * @swagger
-   * path:
    *  /api/places:
    *    put:
    *      summary: Update a place (ID has to be specfied in request body)
@@ -128,3 +126,5 @@ module.exports = function (app) {
   // delete a place by ID
   app.delete(basePath + '/:id', places.delete);
 };
+
+export default placesRoutes;

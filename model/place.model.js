@@ -3,7 +3,7 @@
  *
  * @author C. Mayer (meggsimum)
  */
-module.exports = (sequelize, Sequelize) => {
+const model = (sequelize, Sequelize) => {
   /**
    * @swagger
    *
@@ -59,3 +59,5 @@ module.exports = (sequelize, Sequelize) => {
 
   return Place;
 };
+
+export default model;

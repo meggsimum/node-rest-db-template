@@ -3,4 +3,4 @@ const env = {
   storage: './rest-storage-db.sqlite'
 };
 
-module.exports = env;
+export default env;
