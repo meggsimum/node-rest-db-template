@@ -12,9 +12,9 @@ const logLevels = {
   ERROR: 30
 };
 
-let logLevel = process.env.COLESLAW_REST_LOGLEVEL || 'INFO';
+let logLevel = process.env.REST_LOGLEVEL || 'INFO';
 if (!logLevels[logLevel]) {
-  console.warn('Unsupported log level specified by ENV VAR "COLESLAW_REST_LOGLEVEL", using "INFO"');
+  console.warn('Unsupported log level specified by ENV VAR "REST_LOGLEVEL", using "INFO"');
   logLevel = 'INFO';
 }
 
