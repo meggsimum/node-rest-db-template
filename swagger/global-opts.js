@@ -27,4 +27,4 @@ const swaggerOptions = {
   ]
 };
 
-module.exports = swaggerOptions;
+export default swaggerOptions;

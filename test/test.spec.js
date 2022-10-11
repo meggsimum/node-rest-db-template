@@ -1,5 +1,6 @@
-const request = require('supertest');
-const server = require('../index');
+import { describe, it } from 'mocha';
+import request from 'supertest';
+import server from '../index.js';
 
 const path = '/api/places';
 

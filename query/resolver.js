@@ -1,3 +1,5 @@
+import { Op } from 'sequelize';
+
 /**
  * Resolves a query string to a Sequelize DB query options object.
  *
@@ -5,7 +7,7 @@
  *
  * @author C. Mayer (meggsimum)
  */
-exports.getSequelizeOpts = (query) => {
+const getSequelizeOpts = (query) => {
   let order = null;
   let where = null;
   let limit = null;
@@ -29,7 +31,6 @@ exports.getSequelizeOpts = (query) => {
     const whereVal = filterParts[1];
     where = {};
 
-    const { Op } = require('sequelize');
     where[whereProp] = {
       [Op.eq]: whereVal
     };
@@ -40,4 +41,8 @@ exports.getSequelizeOpts = (query) => {
     limit: limit,
     order: order
   }
+};
+
+export default {
+  getSequelizeOpts
 };

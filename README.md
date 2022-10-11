@@ -11,6 +11,18 @@ The following components are used in this template
   - [Swagger UI Express](https://github.com/scottie1984/swagger-ui-express): Serves auto-generated [swagger-ui](https://swagger.io/tools/swagger-ui/) generated API docs from Express
   - [swagger-jsdoc](https://github.com/Surnet/swagger-jsdoc): Enables the integration of Swagger using JSDoc comments in code
 
+## ENV VARs
+
+  - REST_PORT
+  - REST_INIT_DB
+  - REST_DB_NAME
+  - REST_DB_USER
+  - REST_DB_PASS
+  - REST_DB_HOST
+  - REST_DB_PORT
+  - REST_DB_LOGGING
+  - REST_LOGLEVEL
+
 ## Dev-Setup
 
 ### Run dev-server

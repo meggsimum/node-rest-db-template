@@ -3,23 +3,27 @@
  *
  * @author C. Mayer (meggsimum)
  */
-const express = require('express');
+import process from 'process';
+import express from 'express';
+import bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJsonDoc from 'swagger-jsdoc';
+import swaggerGlobalOpts from './swagger/global-opts.js';
+import db from './config/db.config.js';
+import placesRoute from './route/place.route.js';
+import logger from './util/logger.js';
 
 const port = process.env.REST_PORT || 8888;
 const initDb = process.env.REST_INIT_DB || false;
 
 // REST server
 const app = express();
-const bodyParser = require('body-parser');
 app.use(bodyParser.json());
-require('./route/place.route.js')(app);
+placesRoute(app);
 
 // DB / ORM
-const db = require('./config/db.config.js');
 db.sequelize.sync({ force: initDb }).then(() => {
-  console.log('-----------------------------------------------');
-  console.log(`Drop and resync with { force: ${initDb} }`);
-  console.log('-----------------------------------------------');
+  logger.framed(`Drop and resync with { force: ${initDb} }`);
 
   if (initDb) {
     // Init data for 'places' table in database
@@ -29,15 +33,12 @@ db.sequelize.sync({ force: initDb }).then(() => {
       { name: 'Mutterstadt', lat: 49.433333, lon: 8.35 }
     ]);
 
-    verboseLogging('Created initial dataset(s)');
+    logger.info('Created initial dataset(s)');
   }
 });
 
 // Swagger
-const swaggerUi = require('swagger-ui-express');
-const swaggerJsonDoc = require('swagger-jsdoc');
-const swaggerOpts = require('./swagger/global-opts');
-const specs = swaggerJsonDoc(swaggerOpts);
+const specs = swaggerJsonDoc(swaggerGlobalOpts);
 app.use('/docs', swaggerUi.serve);
 app.get(
   '/docs',
@@ -46,20 +47,10 @@ app.get(
   })
 );
 
-const verbose = true;
-
 // start server and export the instance (for unit tests mainly)
-module.exports = app.listen(port, () =>
-  console.log(`REST server listening on port ${port}!`)
+app.listen(port, () =>
+  logger.info(`REST server listening on port ${port}!`)
 );
 
-/**
- * Logs the given message, when `verbose` flag is set to true.
- *
- * @param {*} msg
- */
-function verboseLogging (msg) {
-  if (verbose) {
-    console.log.apply(console, arguments);
-  }
-}
+// export the instance (for unit tests mainly)
+export default app;
