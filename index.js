@@ -33,7 +33,7 @@ db.sequelize.sync({ force: initDb }).then(() => {
       { name: 'Mutterstadt', lat: 49.433333, lon: 8.35 }
     ]);
 
-    verboseLogging('Created initial dataset(s)');
+    logger.info('Created initial dataset(s)');
   }
 });
 
@@ -46,8 +46,6 @@ app.get(
     explorer: false
   })
 );
-
-const verbose = true;
 
 // start server and export the instance (for unit tests mainly)
 app.listen(port, () =>

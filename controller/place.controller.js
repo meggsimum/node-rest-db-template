@@ -57,7 +57,7 @@ const update = (req, res) => {
   }
 
   Places.update(req.body,
-    { where: { id: id } }).then(() => {
+    { where: { id } }).then(() => {
     res.status(200).json({ mgs: 'Updated Successfully -> Place ID = ' + id });
   }).catch(err => {
     logger.error(err);
@@ -69,7 +69,7 @@ const update = (req, res) => {
 const _delete = (req, res) => {
   const id = req.params.id;
   Places.destroy({
-    where: { id: id }
+    where: { id }
   }).then(() => {
     res.status(200).json({ msg: 'Deleted Successfully -> Place ID = ' + id });
   }).catch(err => {
